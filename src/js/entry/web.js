@@ -218,11 +218,13 @@ app.run(['$rootScope', '$injector', '$compile', '$route', '$routeParams', '$loca
 
   // Once the app controller has been instantiated
   // XXX ST: I think this should be an event instead of a watch
-  scope.$watch("app_loaded", function on_app_loaded(oldval, newval) {
+  var removeAppLoadListener = scope.$watch("app_loaded", function on_app_loaded() {
     $('nav a').click(function() {
       if (location.hash == this.hash) {
         scope.$apply(function () {
           $route.reload();
+
+          removeAppLoadListener();
         });
       }
     });
