@@ -209,13 +209,6 @@ app.run(['$rootScope', '$injector', '$compile', '$route', '$routeParams', '$loca
   $rootScope.$routeParams = $routeParams;
   $('#main').data('$scope', scope);
 
-  // If using the old "amnt" parameter rename it "amount"
-  var amnt = $location.search().amnt;
-  if (amnt) {
-    $location.search("amnt", null);
-    $location.search("amount", amnt);
-  }
-
   // Once the app controller has been instantiated
   // XXX ST: I think this should be an event instead of a watch
   var removeAppLoadListener = scope.$watch("app_loaded", function on_app_loaded() {
